@@ -1,8 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useStuff } from "./hooks/no-error-use-stuff.hook";
 
 function App() {
+  const {
+    failtToGetSomeStuffAsync,
+    failtToGetSomeStuffSync,
+    getStuffAsync,
+    getStuffSync,
+  } = useStuff("some-url");
+
+  failtToGetSomeStuffAsync().then((r) =>
+    console.log(`I got ${r} from failtToGetSomeStuffAsync`)
+  );
+  console.log(
+    `I got ${failtToGetSomeStuffSync()} from failtToGetSomeStuffSync`
+  );
+  getStuffAsync('some-string', 2).then((r) => console.log(`I got ${r} from getStuffAsync`));
+  console.log(`I got ${getStuffSync('str')} from getStuffSync`);
+
   return (
     <div className="App">
       <header className="App-header">
