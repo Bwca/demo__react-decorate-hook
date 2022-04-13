@@ -1,8 +1,8 @@
 import { FunctionWithArguments } from "./function-with-arguments.model";
 import { Optional } from "./optional.model";
 
-export type FunctionWithOptionalReturn<T extends FunctionWithArguments> = (
-  ...args: Parameters<T>
-) => ReturnType<T> extends Promise<infer P>
+export type FunctionWithOptionalReturn<F extends FunctionWithArguments> = (
+  ...args: Parameters<F>
+) => ReturnType<F> extends Promise<infer P>
   ? Promise<Optional<P>>
-  : Optional<ReturnType<T>>;
+  : Optional<ReturnType<F>>;

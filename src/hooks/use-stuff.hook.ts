@@ -1,6 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
-export const useStuff = (someArg: string) => {
+export const useStuff = (startValue: number) => {
+  const [counter, setCount] = useState(startValue);
+
   const getStuffSync = useCallback((s: string) => "got some stuff sync", []);
   const getStuffAsync = useCallback(
     async (s: string, n: number) => Promise.resolve("got some stuff sync"),
@@ -20,5 +22,7 @@ export const useStuff = (someArg: string) => {
     getStuffAsync,
     failtToGetSomeStuffSync,
     failtToGetSomeStuffAsync,
+    setCount,
+    counter,
   };
 };
